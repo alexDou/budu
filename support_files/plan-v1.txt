@@ -1,0 +1,109 @@
+Entrance
+    - welcome
+    - login/signup
+
+User accounts and features
+    - Schema: ArbitraryName, Gender, Age, GeoPosition, Photos, Anything, TS-updated, TS-created
+        -- ArbitraryName: just about any name user can comeup with consisting of letters and numbers
+        -- Gender: M/W
+        -- Age: number < 120
+        -- GeoPosition: city/region/lat-lon. try to determine automatically
+        -- Photos: optional. photos
+        -- ^Type of meeting. dating, business, coffee, sports, walk around, dogs, phone chat
+        -- ^Open for: Type of meeting
+        -- Look for: M/W, age, no pref
+        -- Anything. literally. safe
+        
+^ update right from listings page
+        
+Workflow
+    - Inviting party
+        -- Have a view with a list of candidates based on "GeoLocation", "Look for" & "Type of meeting"
+        -- Can like anyone
+        -- Can send invitation
+    - Receiving party
+        -- See incoming invitations
+        -- Can accept/decline invitation
+        -- Can open short tmp chat with inviting party
+        
+Invitations
+    - Inviting party
+        -- Name/Photo of a chosen person. Form: date-time within 24hrs, place, anything
+        -- Have a view with a list of invitations sent
+    - Receiving party
+        -- Have a list with invitations received
+        -- Can activate any one of it to make an action of yes/no, or to start a chat with inviting party
+
+    * Chat model
+        ** Invite ~~>[Chat](OneToOne) ~~>[Invite][OneToMany]
+            *** id
+            *** from ~~>[UserMeeting](ManyToOne)
+            *** to ~~>[UserMeeting](ManyToOne)
+            *** Place
+            *** Time
+            *** Status
+            *** Anything
+            *** Created
+            *** Updated
+        
+Chat
+    - Both parties
+        -- simple chat. no platform vice decisions made here
+
+    * Chat model
+        ** Chat ~~>[ChatMessage](OneToMany)
+            *** id
+            *** Invite Id
+            *** Status
+            *** Status Report
+            *** chat_messages ~~[ChatMessage]
+            *** createdAt
+
+        ** Chat Message ~~>[Chat](ManyToOne)
+            *** id
+            *** chat
+            *** author ~~>[Chat](ManyToOne)
+            *** message
+            *** sentAt
+        
+Reviews
+    - Expect reviews from both parties with a rate/grade, *description
+        -- Meeting happened: yes/no.
+                -- yes. grade it
+                -- no. which side responsible for failure
+                        -- if both side claimed the fault of the opposite part, grade both 0
+                        -- if one side accepted his/her responsibility, grade this part with minus rating
+    - Review is mandatory and blocking feature. meaning all further activities get blocked if review is not posted
+
+    * Review model
+        ** Reviews ~~>[Invite](ManyToOne)
+            *** id
+            *** invite
+            *** sender ~~>[Chat](ManyToOne)
+            *** subject ~~>[Chat](ManyToOne)
+            *** grade
+            *** notes
+            *** createdAt
+            *** updatedAt
+
+Rating
+    - Calculate rating based on the reviews and figure out leaders in each types of meeting
+
+    * Rating model
+        ** Rating ~~>[UserMeeting](OneToOne)
+            *** id
+            *** user ~~>[UserMeeting]
+            *** rating
+            *** updatedAt
+
+Notification
+    - Show users related notifications. invitation update, review placed, rating calculated, etc.
+
+    * Notification model
+        ** Notification ~~> [UserMeeting]
+            *** id
+            *** user
+            *** notification_type
+            *** notification_details
+            *** notification_message
+            *** createdAt

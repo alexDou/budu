@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "sourceMap": true,
+        "module": "commonjs",
+        "target": "esnext",
+        "lib": ["es5", "es6", "esnext.asynciterable", "es7", "es2017"],
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "noImplicitAny": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmitOnError": true,
+        "baseUrl": "."
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

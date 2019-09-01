@@ -1,0 +1,36 @@
+# npm
+**/node_modules
+**/.npm
+
+#
+.DS_Store
+
+# IDE
+**/.idea
+
+# logs
+**/logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+**/build/*
+
+# eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+.env.test

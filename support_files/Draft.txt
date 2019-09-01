@@ -1,0 +1,28 @@
+Project weeze
+------------------------
+- registration each day
+        - optionally extend to 3,5,7 days
+        - each temporary account gets deleted after a day or 2 after they expired
+        - use small fee $0.5 for entrance
+OR
+- permanent user account 
+        - master rating
+        - verification made by votes from other users (from pairs)
+
+register phone num & verification code. Or social accounts
+
+xbait:
+- images
+- place to meet
+- sponsor
+- decent expose
+`````````````````````
+- financial model
+    - user pays for success only
+        -- he/she himself gives the grade of success
+        -- system counts a fee for engagement taking to account:
+                user master rating, 
+                the success grade,
+                user activity
+        -- calculate and update master rating
+`````````````````````
