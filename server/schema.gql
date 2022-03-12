@@ -4,9 +4,9 @@
 # -----------------------------------------------
 
 type ChatEntity {
+  createdAt: DateTime!
   status: String!
   status_report: String
-  createdAt: DateTime!
 }
 
 input ChatInput {
@@ -22,8 +22,8 @@ type ChatMessagesEntity {
 
 input ChatMessagesInput {
   author: String!
-  message: String!
   chat: ChatInput!
+  message: String!
 }
 
 """
@@ -32,115 +32,115 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 scalar DateTime
 
 type InvitationEntity {
-  type: String!
-  place: String!
   anything: String!
-  time: DateTime!
-  status: String!
   createdAt: DateTime!
+  place: String!
+  status: String!
+  time: DateTime!
+  type: String!
   updatedAt: DateTime!
 }
 
 input InviteInput {
+  anything: String!
   from: UserInput!
+  place: String!
+  status: String!
+  time: DateTime!
   to: UserInput!
   type: String!
-  place: String!
-  anything: String!
-  time: DateTime!
-  status: String!
 }
 
 type Mutation {
-  updateUser(user: UserUpdateInput!, userId: String!): User!
-  updateUserMeeting(user_meeting: UserInput!, umId: String!): UserMeeting!
-  updateUserRole(role: String!, roleId: String!): UserRoles!
-  saveUserRole(role: String!, userId: String!): UserRoles!
-  updateUserPhoto(open_for: String!, ofId: String!): UserMeetingOpenFor!
-  saveUserPhoto(photo: String!, userId: String!): UserPhotos!
+  removeChatMessage(cmId: String!): Boolean!
+  removeNotification(nId: String!): Boolean!
+  saveChat(chat: ChatInput!): ChatEntity!
+  saveChatMessage(chatId: String!, chat_message: ChatMessagesInput!): ChatMessagesEntity!
+  saveInvite(invite: InviteInput!): InvitationEntity!
+  saveNotification(notification: NotificationInput!): NotificationEntity!
+  saveRating(rating: RatingInput!): RatingEntity!
+  saveReview(review: ReviewInput!): ReviewEntity!
+  saveUserLookFor(age: Int!, gender: String!, userId: String!): UserMeetingLookFor!
   saveUserMeetingType(meeting_type: String!, userId: String!): UserMeetingType!
   saveUserOpenFor(open_for: String!, userId: String!): UserMeetingOpenFor!
-  updateUserLookFor(age: Int!, gender: String!, lfId: String!): UserMeetingLookFor!
-  saveUserLookFor(age: Int!, gender: String!, userId: String!): UserMeetingLookFor!
-  updateInvite(invite: InviteInput!, iId: String!): InvitationEntity!
-  saveInvite(invite: InviteInput!): InvitationEntity!
-  withdrawInvite(iId: String!): Boolean!
-  updateChat(chat: ChatInput!, cId: String!): ChatEntity!
-  saveChat(chat: ChatInput!): ChatEntity!
+  saveUserPhoto(photo: String!, userId: String!): UserPhotos!
+  saveUserRole(role: String!, userId: String!): UserRoles!
+  updateChat(cId: String!, chat: ChatInput!): ChatEntity!
   updateChatMessage(chat_messages: ChatMessagesInput!, cmId: String!): ChatMessagesEntity!
-  saveChatMessage(chat_message: ChatMessagesInput!, chatId: String!): ChatMessagesEntity!
-  removeChatMessage(cmId: String!): Boolean!
-  updateReview(review: ReviewInput!, rId: String!): ReviewEntity!
-  saveReview(review: ReviewInput!): ReviewEntity!
+  updateInvite(iId: String!, invite: InviteInput!): InvitationEntity!
+  updateNotificationStatus(nId: String!, status: String!): Boolean!
+  updateRating(rId: String!, rating: RatingInput!): RatingEntity!
+  updateReview(rId: String!, review: ReviewInput!): ReviewEntity!
+  updateUser(user: UserUpdateInput!, userId: String!): User!
+  updateUserLookFor(age: Int!, gender: String!, lfId: String!): UserMeetingLookFor!
+  updateUserMeeting(umId: String!, user_meeting: UserInput!): UserMeeting!
+  updateUserPhoto(ofId: String!, open_for: String!): UserMeetingOpenFor!
+  updateUserRole(role: String!, roleId: String!): UserRoles!
+  withdrawInvite(iId: String!): Boolean!
   withdrawReview(rId: String!): Boolean!
-  updateRating(rating: RatingInput!, rId: String!): RatingEntity!
-  saveRating(rating: RatingInput!): RatingEntity!
-  updateNotificationStatus(status: String!, nId: String!): Boolean!
-  saveNotification(notification: NotificationInput!): NotificationEntity!
-  removeNotification(nId: String!): Boolean!
 }
 
 type NotificationEntity {
-  type: String!
   details: String
   message: String!
   status: String!
+  type: String!
   updatedAt: DateTime!
 }
 
 input NotificationInput {
-  id: String!
-  type: String!
   details: String!
+  id: String!
   message: String!
   status: String!
+  type: String!
   user: UserInput!
 }
 
 type Query {
-  getUser(userId: String!): User!
-  users: [User!]!
-  usersMeeting: [UserMeeting!]!
-  userMeetingById(userId: String!): UserMeeting!
-  user_invites_sent(userId: String!): [InvitationEntity!]!
-  user_invites_incoming(userId: String!): [InvitationEntity!]!
-  inviteById(iId: String!): InvitationEntity!
-  inviteByTypeAndUser(inviter: Boolean!, type: String!, userId: String!): InvitationEntity!
   chat(cId: String!): [ChatEntity!]!
   chat_messages(chatId: String!): [ChatMessagesEntity!]!
-  user_reviews_sent(userId: String!): [ReviewEntity!]!
-  user_reviews_incoming(userId: String!): [ReviewEntity!]!
-  user_rating(userId: String!): [RatingEntity!]!
+  getUser(userId: String!): User!
+  inviteById(iId: String!): InvitationEntity!
+  inviteByTypeAndUser(inviter: Boolean!, type: String!, userId: String!): InvitationEntity!
+  userMeetingById(userId: String!): UserMeeting!
+  user_invites_incoming(userId: String!): [InvitationEntity!]!
+  user_invites_sent(userId: String!): [InvitationEntity!]!
   user_notifications(userId: String!): [NotificationEntity!]!
+  user_rating(userId: String!): [RatingEntity!]!
+  user_reviews_incoming(userId: String!): [ReviewEntity!]!
+  user_reviews_sent(userId: String!): [ReviewEntity!]!
+  users: [User!]!
+  usersMeeting: [UserMeeting!]!
 }
 
 type RatingEntity {
-  rating: Float!
   createdAt: DateTime!
+  rating: Float!
 }
 
 input RatingInput {
   id: String!
-  user: UserInput!
   rating: Float!
+  user: UserInput!
 }
 
 type ReviewEntity {
-  reviewer: String!
-  subject: String!
+  createdAt: DateTime!
   grade: Int!
   review: String
-  createdAt: DateTime!
+  reviewer: String!
+  subject: String!
   updatedAt: DateTime!
 }
 
 input ReviewInput {
+  grade: Int!
   id: String!
   invitation: InviteInput!
+  review: String!
   reviewer: String!
   subject: String!
-  grade: Int!
-  review: String!
 }
 
 type User {
@@ -149,20 +149,20 @@ type User {
 }
 
 input UserInput {
+  age: Int!
   arbitraryName: String!
   gender: String!
-  age: Int!
   geoposition: String!
   phone: String!
 }
 
 type UserMeeting {
-  publicName: String!
-  gender: String!
   age: Int!
+  anything: String
+  gender: String!
   geoposition: String!
   phone: String
-  anything: String
+  publicName: String!
 }
 
 type UserMeetingLookFor {
@@ -186,8 +186,8 @@ type UserRoles {
 }
 
 input UserUpdateInput {
-  username: String!
   email: String!
   status: String!
   status_comment: String!
+  username: String!
 }

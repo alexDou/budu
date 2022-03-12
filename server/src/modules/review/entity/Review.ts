@@ -43,7 +43,7 @@ export class ReviewEntity {
     @IsString()
     review: string;
 
-    @ManyToOne(type => InvitationEntity, invitation => invitation.review)
+    @ManyToOne(type => InvitationEntity, invitation => invitation.reviews)
     invitation: InvitationEntity;
 
     @CreateDateColumn({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})

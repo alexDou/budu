@@ -65,7 +65,7 @@ export class InvitationEntity {
   @OneToMany(type => ReviewEntity, review => review.invitation, {
     eager: true
   })
-  review: ReviewEntity[];
+  reviews: ReviewEntity[];
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

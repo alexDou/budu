@@ -4,7 +4,7 @@ Entrance
 
 User accounts and features
     - Schema: ArbitraryName, Gender, Age, GeoPosition, Photos, Anything, TS-updated, TS-created
-        -- ArbitraryName: just about any name user can comeup with consisting of letters and numbers
+        -- ArbitraryName: just about any name user can come up with consisting of letters and numbers
         -- Gender: M/W
         -- Age: number < 120
         -- GeoPosition: city/region/lat-lon. try to determine automatically

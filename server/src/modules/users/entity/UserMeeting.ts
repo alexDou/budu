@@ -16,7 +16,7 @@ import { UserPhotos } from './UserPhotos';
 import { UserMeetingType } from './UserMeetingType';
 import { UserMeetingOpenFor } from './UserMeetingOpenFor';
 import { UserMeetingLookFor } from './UserMeetingLookFor';
-import { InvitationEntity } from "../../invite/entity/Invitation";
+import { InvitationEntity } from "../../invite";
 import { RatingEntity } from "../../rating/entity/Rating";
 
 
